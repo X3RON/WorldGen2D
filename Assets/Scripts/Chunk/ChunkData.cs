@@ -4,6 +4,7 @@ namespace ChunkGen {
 
     [Serializable]
     public class ChunkData {
+
         // position of chunk X
         public int X { get; private set; }
 
@@ -12,6 +13,7 @@ namespace ChunkGen {
 
         // holds the tile ids
         public byte[] TerrainTiles { get; private set; }
+
 
         public ChunkData(int x, int y, byte[] terrainTiles) {
             X = x;
