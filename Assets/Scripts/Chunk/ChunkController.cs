@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ChunkGen {
 
-    internal class ChunkController :MonoBehaviour {
+    internal class ChunkController : MonoBehaviour {
 
         // path of chunk data on disk (savepath)
         private string fileName;
@@ -14,15 +14,15 @@ namespace ChunkGen {
 
         public void CustomStart(int x, int y) {
 
-            fileName = Path.Combine(Application.persistentDataPath, Constants.FilePath, x.ToString() +"_"+ y.ToString());
+            fileName = Path.Combine(Application.persistentDataPath, Constants.FilePath, x.ToString() + "_" + y.ToString());
 
             //if (File.Exists(fileName)) {
-                //chunkData = LoadChunk();
+            //chunkData = LoadChunk();
             //} else {
-                chunkData = GenerateChunk(x, y);
-                SaveChunk();
+            chunkData = GenerateChunk(x, y);
+            SaveChunk();
             //}
-            Debug.Log("Created chunk: " + x.ToString() + "_" + y.ToString());
+
             //tilemap.set;
         }
 
@@ -37,13 +37,17 @@ namespace ChunkGen {
         }
 
         private ChunkData GenerateChunk(int x, int y) {
-                               
+
             int numberOfChunks = ChunkManager.Instance.NumberOfChunks;
             int chunkSize = ChunkManager.Instance.ChunkSize;
             float frequenzy = ChunkManager.Instance.Frequenzy;
+
+            float frequenzyMultiplier = ChunkManager.Instance.FrequenzyMultiplier;
+            float persi = ChunkManager.Instance.Persistent;
             float octaves = ChunkManager.Instance.Octaves;
-            int xOffset = x * ChunkManager.Instance.ChunkSize;
-            int yOffset = y * ChunkManager.Instance.ChunkSize;
+
+            float xOffset = /*ChunkManager.Instance.Seed + */(x * ChunkManager.Instance.ChunkSize);
+            float yOffset = /*ChunkManager.Instance.Seed + */(y * ChunkManager.Instance.ChunkSize);
 
 
             // holds the noise
@@ -53,23 +57,34 @@ namespace ChunkGen {
             for (int yy = 0; yy < ChunkManager.Instance.ChunkSize; yy++) {
                 for (int xx = 0; xx < ChunkManager.Instance.ChunkSize; xx++) {
 
-                    float noiseTemp = Mathf.PerlinNoise(frequenzy*(xOffset + xx) , frequenzy* (yOffset + yy));
-                    //TOMScript.Instance.SetTile(gameObject, 0.3f, 05f);
-                    //float noiseHum = Mathf.PerlinNoise(xOffset + xx, yOffset + yy);
-                    //byte tileID = 0;
-                    ChunkManager.Instance.Texture.SetPixel(xOffset + xx, yOffset + yy, new Color(noiseTemp, noiseTemp, noiseTemp, 1));
-                    //tiles[xx + yy * numberOfChunks] = 
+                    float impact = 1;
+                    float noiseTemp = 0;
+                    float noiseHum = 0;
+                    frequenzy = ChunkManager.Instance.Frequenzy;
+                    for (int oct = 0; oct < ChunkManager.Instance.Octaves; oct++) {
+                        noiseTemp += impact * Mathf.PerlinNoise(frequenzy * (xOffset + xx), frequenzy * (yOffset + yy));
+                        //noiseHum += impact * Mathf.PerlinNoise(frequenzy * (xOffset + xx), frequenzy * (yOffset + yy));
+
+                        frequenzy *= frequenzyMultiplier;
+                        impact *= persi;
+                        
+
+
+                    }
+                    noiseTemp = Mathf.Pow(noiseTemp, ChunkManager.Instance.Redistrubution);
+
+                    //TOMScript.Instance.SetTile(gameObject, noiseTemp, noiseHum);
+                    ChunkManager.Instance.Texture.SetPixel((int)xOffset + xx, (int)yOffset + yy, new Color(noiseTemp, noiseTemp, noiseTemp, 1));
                 }
             }
+
             ChunkManager.Instance.Texture.Apply();
             ChunkManager.Instance.UpdateTexture();
 
-
-            Debug.Log("gen chunk");
             return new ChunkData(x, y, tiles);
 
         }
-      
+
         private ChunkData LoadChunk() {
 
             if (File.Exists(fileName)) {

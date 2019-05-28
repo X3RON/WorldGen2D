@@ -164,7 +164,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -225,12 +225,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkSize: 16
-  numberofChunks: 1
-  frequenzy: 0.2
-  frequenzyMultiplier: 0
-  persistent: 0
-  seed: 0
-  octaves: 0
+  numberofChunks: 64
+  frequenzy: 0.01
+  frequenzyMultiplier: 5.6
+  persistent: 0.2
+  redistribution: 1
+  seed: 66666
+  octaves: 2
 --- !u!4 &1793668154
 Transform:
   m_ObjectHideFlags: 0
