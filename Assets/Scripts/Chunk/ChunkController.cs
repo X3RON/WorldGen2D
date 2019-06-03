@@ -48,6 +48,10 @@ namespace ChunkGen {
             int i = 0;
             Vector3Int pos = Vector3Int.zero;
             Tile t;
+
+            // tom
+            //Tile[] AutoTile.GetAutoTile();
+
             for (int yy = 0; yy < ChunkManager.Instance.ChunkSize; yy++) {
                 for (int xx = 0; xx < ChunkManager.Instance.ChunkSize; xx++) {
                     pos.x = xx;
