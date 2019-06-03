@@ -14,11 +14,13 @@ namespace ChunkGen {
         // holds the tile ids
         public byte[] TerrainTiles { get; private set; }
 
+        public byte[] MapObjects { get; set; }
 
-        public ChunkData(int x, int y, byte[] terrainTiles) {
+        public ChunkData(int x, int y, byte[] terrainTiles, byte[] mapObjects) {
             X = x;
             Y = y;
             TerrainTiles = terrainTiles;
+            MapObjects = mapObjects;
         }
 
     }

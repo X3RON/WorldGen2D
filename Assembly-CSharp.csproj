@@ -60,13 +60,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Chunk\ChunkAutoTile.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkConstants.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkController.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkData.cs" />
-    <Compile Include="Assets\Scripts\Chunk\ChunkGlobals.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkManager.cs" />
     <Compile Include="Assets\Scripts\Chunk\ChunkStructs.cs" />
-    <Compile Include="Assets\Scripts\Chunk\TOMScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/18-12/Documents/Dokumente/WorldGen2D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

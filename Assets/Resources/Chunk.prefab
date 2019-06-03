@@ -57,6 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d8960ce30e96049aec94d378d0ac8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileGras: {fileID: 11400000, guid: 1d26d8ce31b50a24cb65a1763a40e965, type: 2}
+  tileGrasLight: {fileID: 11400000, guid: 14dc25d1002e04741bbd36515718b209, type: 2}
+  tileDirt: {fileID: 11400000, guid: 1be6916a55a6f2c42b105155d51cf57b, type: 2}
+  tileSand: {fileID: 11400000, guid: 32772bd9979358544b8bb5ed98c84c0f, type: 2}
+  treeBig: {fileID: 3308737978443410047, guid: 0206824a2eff99a4daa3064ffcb2f72c, type: 3}
+  treeSmall: {fileID: 7917902736874501751, guid: 2f399fdde3b68124fb06b1d9ba8d11a5,
+    type: 3}
 --- !u!1 &7330112796178837609
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +169,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1000
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
